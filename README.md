@@ -7,6 +7,7 @@
 [![dependency - Faker](https://img.shields.io/badge/dependency-Faker-blue)](https://pypi.org/project/Faker)
 [![dependency - allure-pytest](https://img.shields.io/badge/dependency-allure--pytest-blue?logo=qameta&logoColor=white)](https://pypi.org/project/allure-pytest)
 
+Status of Last Deployment: [![DEMOQA](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml/badge.svg?branch=)](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml)
 
 ## How to work with this repository:
 
@@ -15,8 +16,8 @@
 - Create a virtual environment.
 - Run command **pip install -r requirements.txt**
 - After, execute **pytest -s -v** to run tests.
-- After, execute pytest --alluredir=allure_result .\tests to run tests.
-- To view the allure report, type the command: allure serve .\allure_result
+- After, execute **pytest --alluredir=allure_result .\tests** to run tests.
+- To view the allure report, type the command: **allure serve .\allure_result**
 
 
 ## Task description:
