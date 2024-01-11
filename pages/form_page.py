@@ -1,3 +1,4 @@
+import random
 from pages.base_page import BasePage
 from locators.form_page_locators import PracticeFormLocators as Locator
 from generator.generator import get_person
@@ -33,6 +34,20 @@ class FormsPage(BasePage):
         mobile = info.mobile
         self.send_keys_in_field(Locator.PHONE_NUMBER, mobile)
         return mobile[:10]
+
+    def choose_date_of_birth(self):
+        self.click_element(Locator.BIRTH_DAY)    # choose calender
+        # Select year:
+        self.click_button(Locator.YEARS_CHANGE)
+        year = self.get_text(Locator.YEARS)
+        self.click_element(Locator.YEARS)        # choose years
+        # Select month:
+        self.click_element(Locator.MONTHS_CHANGE)
+        month = self.get_text(Locator.MONTHS)
+        self.click_element(Locator.MONTHS)        # choose month
+        # Select day:
+        day = self.click_random_element(Locator.DAY_DATE_PICKER)
+        return day, month, year
 
 
 

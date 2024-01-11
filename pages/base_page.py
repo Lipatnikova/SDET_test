@@ -1,3 +1,5 @@
+import random
+
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
@@ -41,6 +43,15 @@ class BasePage:
         self.go_to_element(self.element_is_present(locator))
         return Wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
+    def elements_are_present(self, locator, timeout=5):
+        """
+           This method expects to verify that the elements are present in the DOM tree,
+           but not necessarily visible and displayed on the page.
+           Locator - is used to find the elements.
+           Timeout - the duration it will wait for. The default is set to 5 seconds, but it can be modified if needed.
+           """
+        return Wait(self.driver, timeout).until(EC.presence_of_all_elements_located(locator))
+
     def go_to_element(self, element):
         """
         This method scrolls the page to the selected element, making it visible to the user.
@@ -49,14 +60,26 @@ class BasePage:
 
     def get_text(self, locator):
         """
-        This method get element text
+        This method gets the text from the element.
         """
         return self.element_is_visible(locator, 20).text
 
     def send_keys_in_field(self, locator, key):
+        """
+        This method sends the key in the field.
+        """
         self.element_is_visible(locator).send_keys(key)
 
     def click_button(self, locator):
         self.element_is_clickable(locator).click()
 
+    def click_element(self, locator):
+        self.element_is_visible(locator).click()
+
+    def click_random_element(self, locator):
+        elements = self.elements_are_present(locator)
+        random_element = random.choice(elements)
+        text = random_element.text
+        random_element.click()
+        return text
 
