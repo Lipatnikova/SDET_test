@@ -1,6 +1,9 @@
+import os
+import random
+
 from pages.base_page import BasePage
 from locators.form_page_locators import PracticeFormLocators as Locator
-from generator.generator import get_person, generated_subject
+from generator.generator import get_person, generated_subject, generated_file, generated_city
 from selenium.webdriver import Keys
 
 
@@ -60,3 +63,31 @@ class FormsPage(BasePage):
         locator = Locator.HOBBIES
         self.click_button(locator)                # choose hobby
         return self.get_text(locator)
+
+    def select_picture(self):
+        file_name, path = generated_file()
+        self.send_keys_in_field(Locator.FILE_INPUT, path)
+        os.remove(path)
+        return file_name.split('\\')[-1]
+
+    def fill_current_address(self):
+        info = next(get_person())
+        current_address = info.current_address
+        # self.send_keys_in_field(Locator.CURRENT_ADDRESS, current_address)
+        # self.fill_in_field(Locator.CURRENT_ADDRESS, current_address)
+        self.send_keys_in_field(Locator.CURRENT_ADDRESS, current_address)
+        return current_address
+
+    def select_state_and_city(self):
+        state, city = generated_city()
+        new_city = city[random.randint(0, len(city) - 1)]
+        self.click_element(Locator.SELECT_STATE)
+        self.send_keys_in_field(Locator.STATE_INPUT, state)
+        self.send_keys_in_field(Locator.STATE_INPUT, Keys.RETURN)
+        self.click_element(Locator.SELECT_CITY)
+        self.send_keys_in_field(Locator.CITY_INPUT, new_city)
+        self.send_keys_in_field(Locator.CITY_INPUT, Keys.RETURN)
+        return state, new_city
+
+    def click_submit(self):
+        self.element_is_visible(Locator.SUBMIT).send_keys(Keys.RETURN)

@@ -19,7 +19,7 @@ class PracticeFormLocators:
     SUBJECT = (By.CSS_SELECTOR, "input[id='subjectsInput']")
     HOBBIES = (By.CSS_SELECTOR, f"label[for='hobbies-checkbox-{random.randint(1, 3)}']")
     FILE_INPUT = (By.CSS_SELECTOR, "input[id='uploadPicture']")
-    CURRENT_ADDRESS = (By.CSS_SELECTOR, "textarea[id='currentAddress']")
+    CURRENT_ADDRESS = (By.ID, "currentAddress")
     SELECT_STATE = (By.CSS_SELECTOR, "div[id ='state']")
     STATE_INPUT = (By.CSS_SELECTOR, "input[id='react-select-3-input']")
     SELECT_CITY = (By.CSS_SELECTOR, "div[id ='city']")

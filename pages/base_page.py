@@ -68,13 +68,13 @@ class BasePage:
         """
         This method sends the key in the field.
         """
-        self.element_is_visible(locator).send_keys(key)
+        self.element_is_visible(locator, 20).send_keys(key)
 
     def click_button(self, locator):
         self.element_is_clickable(locator).click()
 
     def click_element(self, locator):
-        self.element_is_visible(locator).click()
+        self.element_is_visible(locator, 20).click()
 
     def click_random_element(self, locator):
         elements = self.elements_are_present(locator)
@@ -83,5 +83,3 @@ class BasePage:
         random_element.click()
         return text
 
-    def send_keys_in_field(self, locator, key):
-        self.element_is_visible(locator).send_keys(key)

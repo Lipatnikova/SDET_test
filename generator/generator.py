@@ -23,3 +23,22 @@ def generated_subject():
     for i in range(random.randint(1, 4)):
         new_list_subjects.append(subject[i])
     return new_list_subjects
+
+
+def generated_file():
+    path = rf"D:\Lipatnikova_av\SDET_test\data\fale_{random.randint(0, 999)}.txt"
+    with open(path, 'w+') as f:
+        f.write(f"""Hello World {random.randint(0, 999)}""")
+        f.close()
+    return f.name, path
+
+
+def generated_city():
+    random_list = random.choice(["NCR", "Haryana", "Rajasthan"])
+    city = {
+        "NCR": ["Delhi", "Gurgaon", "Noida"],
+        "Uttar Pradesh": ["Agra", "Lucknow", "Merrut"],
+        "Haryana": ["Karnal", "Panipat"],
+        "Rajasthan": ["Jaipur", "Jaiselmer", ]
+    }
+    return random_list, city[random_list]

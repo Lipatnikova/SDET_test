@@ -14,4 +14,7 @@ class TestFormsPage:
         day, month, year = form_page.choose_date_of_birth()
         subject_list = form_page.fill_subjects()
         hobby = form_page.choose_hobby()
-
+        form_page.select_picture()
+        address = form_page.fill_current_address()
+        state, city = form_page.select_state_and_city()
+        form_page.click_submit()
