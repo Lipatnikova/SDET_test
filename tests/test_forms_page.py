@@ -12,3 +12,6 @@ class TestFormsPage:
         gender = form_page.choose_gender()
         mobile = form_page.fill_mobile_number()
         day, month, year = form_page.choose_date_of_birth()
+        subject_list = form_page.fill_subjects()
+        hobby = form_page.choose_hobby()
+

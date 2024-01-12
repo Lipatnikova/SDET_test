@@ -15,21 +15,21 @@ class BasePage:
         """
         self.driver.get(self.url)
 
-    def element_is_clickable(self, locator, timeout=5):
+    def element_is_clickable(self, locator, timeout=10):
         """
         This method expects to verify that the element is visible, displayed on the page, and enabled.
         The element is present in the DOM tree.
         Locator - is used to find the element.
-        Timeout - the duration it will wait for. The default is set to 5 seconds, but it can be modified if needed.
+        Timeout - the duration it will wait for. The default is set to 10 seconds, but it can be modified if needed.
         """
         return Wait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
 
-    def element_is_present(self, locator, timeout=5):
+    def element_is_present(self, locator, timeout=10):
         """
         This method expects to verify that the element is present in the DOM tree,
         but not necessarily visible and displayed on the page.
         Locator - is used to find the element.
-        Timeout - the duration it will wait for. The default is set to 5 seconds, but it can be modified if needed.
+        Timeout - the duration it will wait for. The default is set to 10 seconds, but it can be modified if needed.
         """
         return Wait(self.driver, timeout).until(EC.presence_of_element_located(locator))
 
@@ -38,17 +38,17 @@ class BasePage:
         This method expects to verify that the element is present in the DOM tree, visible, and displayed on the page.
         Visibility means that the element is not only displayed but also has a height and width greater than 0.
         Locator - is used to find the element.
-        Timeout - the duration it will wait for. The default is set to 5 seconds, but it can be modified if needed.
+        Timeout - the duration it will wait for. The default is set to 10 seconds, but it can be modified if needed.
         """
         self.go_to_element(self.element_is_present(locator))
         return Wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
-    def elements_are_present(self, locator, timeout=5):
+    def elements_are_present(self, locator, timeout=10):
         """
            This method expects to verify that the elements are present in the DOM tree,
            but not necessarily visible and displayed on the page.
            Locator - is used to find the elements.
-           Timeout - the duration it will wait for. The default is set to 5 seconds, but it can be modified if needed.
+           Timeout - the duration it will wait for. The default is set to 10 seconds, but it can be modified if needed.
            """
         return Wait(self.driver, timeout).until(EC.presence_of_all_elements_located(locator))
 
@@ -83,3 +83,5 @@ class BasePage:
         random_element.click()
         return text
 
+    def send_keys_in_field(self, locator, key):
+        self.element_is_visible(locator).send_keys(key)

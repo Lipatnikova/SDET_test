@@ -1,7 +1,7 @@
-import random
 from pages.base_page import BasePage
 from locators.form_page_locators import PracticeFormLocators as Locator
-from generator.generator import get_person
+from generator.generator import get_person, generated_subject
+from selenium.webdriver import Keys
 
 
 class FormsPage(BasePage):
@@ -25,7 +25,7 @@ class FormsPage(BasePage):
 
     def choose_gender(self):
         locator = Locator.GENDER
-        gender_click = self.click_button(locator)
+        self.click_button(locator)               # gender click
         gender_text = self.get_text(locator)
         return gender_text
 
@@ -49,5 +49,14 @@ class FormsPage(BasePage):
         day = self.click_random_element(Locator.DAY_DATE_PICKER)
         return day, month, year
 
+    def fill_subjects(self):
+        subject_list = generated_subject()
+        for item in subject_list:
+            self.send_keys_in_field(Locator.SUBJECT, item)
+            self.send_keys_in_field(Locator.SUBJECT, Keys.RETURN)
+        return subject_list
 
-
+    def choose_hobby(self):
+        locator = Locator.HOBBIES
+        self.click_button(locator)                # choose hobby
+        return self.get_text(locator)
