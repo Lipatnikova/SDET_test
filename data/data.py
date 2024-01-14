@@ -13,3 +13,7 @@ class Person:
 class FormsData:
     SUBJECT = ["Hindi", "English", "Maths", "Physics", "Chemistry", "Biology", "Computer Science",
                "Commerce", "Accounting", "Economics", "Arts", "Social Studies", "History", "Civics"]
+
+
+class ModalData:
+    EXPECTED_TITLE = "Thanks for submitting the form"

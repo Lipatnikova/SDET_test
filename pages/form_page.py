@@ -73,8 +73,6 @@ class FormsPage(BasePage):
     def fill_current_address(self):
         info = next(get_person())
         current_address = info.current_address
-        # self.send_keys_in_field(Locator.CURRENT_ADDRESS, current_address)
-        # self.fill_in_field(Locator.CURRENT_ADDRESS, current_address)
         self.send_keys_in_field(Locator.CURRENT_ADDRESS, current_address)
         return current_address
 
@@ -91,3 +89,7 @@ class FormsPage(BasePage):
 
     def click_submit(self):
         self.element_is_visible(Locator.SUBMIT).send_keys(Keys.RETURN)
+
+    @property
+    def get_modal_title(self):
+        return self.get_text(Locator.TITLE_MODAL)

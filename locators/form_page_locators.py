@@ -25,4 +25,7 @@ class PracticeFormLocators:
     SELECT_CITY = (By.CSS_SELECTOR, "div[id ='city']")
     CITY_INPUT = (By.CSS_SELECTOR, "input[id='react-select-4-input']")
     SUBMIT = (By.CSS_SELECTOR, "button[id='submit']")
+
+    #modal
+    TITLE_MODAL = (By.CSS_SELECTOR, "#example-modal-sizes-title-lg")
     ALL_TABLE = (By.XPATH, "//div[@class='table-responsive']")

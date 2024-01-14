@@ -1,9 +1,10 @@
 from pages.form_page import FormsPage
 from data.data_urls import DataUrls
+from data.data import ModalData
 
 
 class TestFormsPage:
-    def test_verify_fill_form_fields(self, driver):
+    def test_verify_modal_title(self, driver):
         form_page = FormsPage(driver, DataUrls.FORM_URL)
         form_page.open()
         first_name = form_page.fill_first_name()
@@ -14,7 +15,9 @@ class TestFormsPage:
         day, month, year = form_page.choose_date_of_birth()
         subject_list = form_page.fill_subjects()
         hobby = form_page.choose_hobby()
-        form_page.select_picture()
+        # file_name = form_page.select_picture()
         address = form_page.fill_current_address()
         state, city = form_page.select_state_and_city()
         form_page.click_submit()
+        assert form_page.get_modal_title == ModalData.EXPECTED_TITLE, \
+            "Modal title is not displayed correctly or contains unexpected text"
