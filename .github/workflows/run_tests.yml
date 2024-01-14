@@ -1,0 +1,35 @@
+name: Automated tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default: test_task
+        type: choice
+        options:
+          - test_task
+          - all
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run test_task
+        if: "github.event.inputs.deployment_target == 'test_task'"
+        run: pytest -s -v tests/test_forms_page.py::TestFormsPage::test_verify_fill_form_fields
+      - name: Run all tests
+        if: "github.event.inputs.deployment_target == 'all'"
+        run: pytest -s -v
