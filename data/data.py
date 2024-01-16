@@ -11,8 +11,8 @@ class Person:
 
 
 class FormsData:
-    SUBJECT = ["Hindi", "English", "Maths", "Physics", "Chemistry", "Biology", "Computer Science",
-               "Commerce", "Accounting", "Economics", "Arts", "Social Studies", "History", "Civics"]
+    SUBJECT = ["Hindi", "English", "Maths", "Physics", "Chemistry", "Biology",
+               "Commerce", "Economics", "Arts", "History", "Civics"]
 
 
 class ModalData:

@@ -1,10 +1,11 @@
 import allure
-import os
 import random
+import pathlib
 
+from pathlib import Path
 from pages.base_page import BasePage
 from locators.form_page_locators import PracticeFormLocators as Locator
-from generator.generator import get_person, generated_subject, generated_file, generated_city
+from generator.generator import get_person, generated_subject, generated_city
 from selenium.webdriver import Keys
 
 
@@ -56,8 +57,8 @@ class FormPage(BasePage):
             month = self.get_text(Locator.MONTHS)
             self.click_element(Locator.MONTHS)        # choose month
             # Select day:
-            day = self.click_random_element(Locator.DAY_DATE_PICKER)
-        return day, month, year
+            day = self.click_random_element_day(Locator.DAY_DATE_PICKER)
+        return day, f'{month},{year}'
 
     def fill_subjects(self):
         with allure.step("Заполнить поле Subjects произвольной строкой"):
@@ -68,17 +69,20 @@ class FormPage(BasePage):
         return subject_list
 
     def choose_hobby(self):
-        locator = Locator.HOBBIES
         with allure.step("Выбрать любое значение Hobbies"):
+            locator = Locator.HOBBIES
             self.click_button(locator)                # choose hobby
         return self.get_text(locator)
 
     def select_picture(self):
         with allure.step("Загрузить любое изображение в поле Picture"):
-            file_name, path = generated_file()
-            self.send_keys_in_field(Locator.FILE_INPUT, path)
-            os.remove(path)
-        return file_name.split('\\')[-1]
+            file_name = "img_for_test.jpg"
+            # Получаем строку, содержащую путь к рабочей директории:
+            dir_path = pathlib.Path.cwd()
+            # Объединяем полученную строку с недостающими частями пути
+            path = Path(dir_path, 'resource', file_name)
+            self.send_keys_in_field(Locator.FILE_INPUT, rf'{str(path)}')
+        return file_name
 
     def fill_current_address(self):
         info = next(get_person())

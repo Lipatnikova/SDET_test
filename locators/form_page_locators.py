@@ -28,4 +28,4 @@ class PracticeFormLocators:
 
     #modal
     TITLE_MODAL = (By.CSS_SELECTOR, "#example-modal-sizes-title-lg")
-    ALL_TABLE = (By.XPATH, "//div[@class='table-responsive']")
+    VALUES_TABLE = (By.CSS_SELECTOR, "div.modal-body > div > table > tbody > tr > td:nth-child(2)")

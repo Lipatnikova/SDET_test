@@ -52,6 +52,15 @@ class BasePage:
            """
         return Wait(self.driver, timeout).until(EC.presence_of_all_elements_located(locator))
 
+    def elements_are_visible(self, locator, timeout=10):
+        """
+        This method expects to verify that the elements are present in the DOM tree, visible and displayed on the page.
+        Visibility means that the elements are not only displayed but also have a height and width greater than 0.
+        Locator - is used to find the elements.
+        Timeout - the duration it will wait for. The default is set to 10 seconds, but it can be modified if needed.
+        """
+        return Wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
+
     def go_to_element(self, element):
         """
         This method scrolls the page to the selected element, making it visible to the user.
@@ -76,10 +85,12 @@ class BasePage:
     def click_element(self, locator):
         self.element_is_visible(locator, 20).click()
 
-    def click_random_element(self, locator):
+    def click_random_element_day(self, locator):
         elements = self.elements_are_present(locator)
         random_element = random.choice(elements)
         text = random_element.text
         random_element.click()
+        if len(text) == 1:
+            text = f'0{text}'
         return text
 
