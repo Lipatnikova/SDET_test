@@ -78,9 +78,9 @@ class FormPage(BasePage):
         with allure.step("Загрузить любое изображение в поле Picture"):
             file_name = "img_for_test.jpg"
             # Получаем строку, содержащую путь к рабочей директории:
-            dir_path = pathlib.Path.cwd()
+            dir_path = pathlib.Path.home()
             # Объединяем полученную строку с недостающими частями пути
-            path = Path(dir_path, 'resource', file_name)
+            path = Path(dir_path, 'work', 'SDET_test', 'SDET_test', 'tests', 'resource', file_name)
             self.send_keys_in_field(Locator.FILE_INPUT, rf'{str(path)}')
         return file_name
 
