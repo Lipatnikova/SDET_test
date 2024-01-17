@@ -9,18 +9,25 @@
 
 Status of Last Deployment: [![DEMOQA](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml/badge.svg?branch=)](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml)
 
-## How to work with this repository:
+## How to work with this repository by Git Actions:
 
-- Clone repository to your machine.
+- Click Actions. 
+- Choose All workflows -> Automated tests ("This workflow has a workflow_dispatch event trigger"). 
+- Click button Run workflow and Choose target: "test_task". 
+- Click button Run workflow.
+
+## How to work with this repository by PC:
+
+- Clone repository to your machine (use home directory).
 - Navigate to the root folder of the project.
 - Create a virtual environment.
 - Run command **pip install -r requirements.txt**
-- After, execute **pytest -s -v** to run tests.
-- After, execute **pytest --alluredir=allure_result .\tests** to run tests.
-- To view the allure report, type the command: **allure serve .\allure_result**
+- After, execute **pytest -s -v** to run tests 
+- After, execute **pytest -s -v --alluredir allure-results** to run tests.
+- To view the allure report, type the command: **allure serve allure-results**
 
 
-## Task description:
+## Task description for Python:
 
 
 1. На Python (рекомендуется использовать версию 3.10) создать проект UI-автотестов по тест-кейсам описанным ниже.
@@ -49,9 +56,9 @@ Status of Last Deployment: [![DEMOQA](https://github.com/Lipatnikova/SDET_test/a
 7. Заполнить поле Subjects произвольной строкой
 8. Загрузить любое изображение в поле Picture
 9. Заполнить поле Current Address произвольной строкой
-10.Выбрать любое значение в Select State с помощью выпадающего списка
-11.Выбрать любое значение в Select City с помощью выпадающего списка
-12.Нажать кнопку Submit
+10. Выбрать любое значение в Select State с помощью выпадающего списка
+11. Выбрать любое значение в Select City с помощью выпадающего списка
+12. Нажать кнопку Submit
 
 **Ожидаемый результат:**
 1. Появилось всплывающее окно с заголовком Thanks for submitting the form
