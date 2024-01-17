@@ -66,7 +66,7 @@ class FormPage(BasePage):
             for item in subject_list:
                 self.send_keys_in_field(Locator.SUBJECT, item)
                 self.send_keys_in_field(Locator.SUBJECT, Keys.RETURN)
-        return subject_list
+        return ', '.join(subject_list)
 
     def choose_hobby(self):
         with allure.step("Выбрать любое значение Hobbies"):
@@ -78,15 +78,18 @@ class FormPage(BasePage):
         with allure.step("Загрузить любое изображение в поле Picture"):
             file_name = "img_for_test.jpg"
             # Получаем строку, содержащую путь к рабочей директории:
+            # (абсолютный путь в домашний каталог текущего пользователя ПК)
             dir_path = pathlib.Path.home()
+            # dir_path = pathlib.Path.cwd() заменить, если используется другой каталог
             # Объединяем полученную строку с недостающими частями пути
             path = Path(dir_path, 'work', 'SDET_test', 'SDET_test', 'tests', 'resource', file_name)
+            # path = Path(dir_path, 'resource', file_name) заменить, если используется другой каталог
             self.send_keys_in_field(Locator.FILE_INPUT, rf'{str(path)}')
         return file_name
 
     def fill_current_address(self):
         info = next(get_person())
-        current_address = info.current_address
+        current_address = info.current_address[:25].replace('\n', " ").rstrip(' ')
         with allure.step("Заполнить поле Current Address произвольной строкой"):
             self.send_keys_in_field(Locator.CURRENT_ADDRESS, current_address)
         return current_address
@@ -109,4 +112,13 @@ class FormPage(BasePage):
 
     @property
     def get_modal_title(self):
-        return self.get_text(Locator.TITLE_MODAL)
+        with allure.step("Получить значение заголовка"):
+            return self.get_text(Locator.TITLE_MODAL)
+
+    def get_modal_values(self):
+        with allure.step("Получить значения из таблицы всплывающего окна"):
+            values_text = []
+            elements = self.elements_are_visible(Locator.VALUES_TABLE)
+            for element in elements:
+                values_text.append(element.text.strip(','))
+            return values_text

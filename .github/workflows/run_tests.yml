@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run test_task
         if: "github.event.inputs.deployment_target == 'test_task'"
-        run: pytest -s -v tests/test_forms_page.py::TestFormsPage::test_verify_modal_title
+        run: pytest -s -v tests/test_forms_page.py::TestFormPage
       - name: Run all tests
         if: "github.event.inputs.deployment_target == 'all'"
         run: pytest -s -v
