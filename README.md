@@ -7,12 +7,15 @@
 [![dependency - Faker](https://img.shields.io/badge/dependency-Faker-blue)](https://pypi.org/project/Faker)
 [![dependency - allure-pytest](https://img.shields.io/badge/dependency-allure--pytest-blue?logo=qameta&logoColor=white)](https://pypi.org/project/allure-pytest)
 
+
+ALLURE REPORT: [![Allure-report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://lipatnikova.github.io/SDET_test/)
+
 Status of Last Deployment: [![DEMOQA](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml/badge.svg?branch=)](https://github.com/Lipatnikova/SDET_test/actions/workflows/demoqa_push.yml)
 
 ## How to work with this repository by Git Actions:
 
 - Click Actions. 
-- Choose All workflows -> Automated tests ("This workflow has a workflow_dispatch event trigger"). 
+- Choose All workflows -> Automated tests or Automated tests with Allure ("This workflow has a workflow_dispatch event trigger"). 
 - Click button Run workflow and Choose target: "test_task". 
 - Click button Run workflow.
 
