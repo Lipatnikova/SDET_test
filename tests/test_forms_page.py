@@ -33,12 +33,12 @@ class TestFormPage:
     def test_verify_modal_title(self, driver):
         form_page = FormPage(driver, DataUrls.FORM_URL)
         self.fill_form(driver)
-        with allure.step("Проверить всплывающее окно с заголовком Thanks for submitting the form"):
+        with allure.step("Проверить заголовок всплывающего окна"):
             assert form_page.get_modal_title == ModalData.EXPECTED_TITLE, \
                 "Modal title is not displayed correctly or contains unexpected text"
 
     @allure.title("Проверка значений всплывающего окна")
-    @allure.description("Проверка полученных значений во всплывающем окне после"
+    @allure.description("Проверка полученных значений во всплывающем окне после "
                         "заполнения Формы регистрации корректными данными")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Липатникова А.В.")
@@ -46,7 +46,7 @@ class TestFormPage:
         form_page = FormPage(driver, DataUrls.FORM_URL)
         input_data = self.fill_form(driver)
         output_data = form_page.get_modal_values()
-        with allure.step("Сравнить значения во всплывающем окне со заполнениями "
+        with allure.step("Сравнить значения Values во всплывающем окне со значениями "
                          "введенными в Форму регистрации"):
             assert input_data == output_data, \
                 "The values in the modal are not the same as those entered in the registration form"
