@@ -1,7 +1,9 @@
 import random
+import time
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as Wait
+from selenium.webdriver.support.select import Select
 
 
 class BasePage:
@@ -90,7 +92,19 @@ class BasePage:
         random_element = random.choice(elements)
         text = random_element.text
         random_element.click()
-        if len(text) == 1:
-            text = f'0{text}'
         return text
 
+    def get_selected_option_in_select(self, locator):
+        select_elem = self.element_is_visible(locator)
+        # Создаем объект класса Select
+        select_list = Select(select_elem)
+        # Получаем список всех элементов списка
+        options = select_list.options
+        # Выбираем случайный элемент из списка
+        random_option = random.choice(options)
+        random_option.click()
+
+    def get_text_select(self, locator):
+        select_elem = self.element_is_visible(locator)
+        select_list = Select(select_elem)
+        return select_list.first_selected_option.text

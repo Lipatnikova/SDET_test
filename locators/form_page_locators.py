@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 class PracticeFormLocators:
+    # Practice Form
     FIRST_NAME = (By.ID, "firstName")
     LAST_NAME = (By.ID, "lastName")
     EMAIL = (By.XPATH, "//*[@id='userEmail']")
@@ -10,12 +11,10 @@ class PracticeFormLocators:
     PHONE_NUMBER = (By.CSS_SELECTOR, "input[id='userNumber']")
     BIRTH_DAY = (By.CSS_SELECTOR, "input[id='dateOfBirthInput']")
     DAY_DATE_PICKER = (By.CSS_SELECTOR, ".react-datepicker__day")
-    MONTHS_CHANGE = (By.CSS_SELECTOR, f"select[class='react-datepicker__month-select']")
-    MONTHS = (By.CSS_SELECTOR,
-              f"select[class='react-datepicker__month-select'] option[value='{random.randint(1, 12)}']")
-    YEARS_CHANGE = (By.CSS_SELECTOR, f"select[class='react-datepicker__year-select']")
+    MONTHS_CHANGE = (By.CSS_SELECTOR, "select.react-datepicker__month-select")
     YEARS = (By.CSS_SELECTOR,
              f"select[class='react-datepicker__year-select'] option[value='{random.randint(1940, 2023)}']")
+    YEARS_CHANGE = (By.CSS_SELECTOR, "select.react-datepicker__year-select")
     SUBJECT = (By.CSS_SELECTOR, "input[id='subjectsInput']")
     HOBBIES = (By.CSS_SELECTOR, f"label[for='hobbies-checkbox-{random.randint(1, 3)}']")
     FILE_INPUT = (By.CSS_SELECTOR, "input[id='uploadPicture']")

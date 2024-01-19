@@ -1,3 +1,5 @@
+import time
+
 import allure
 import random
 import pathlib
@@ -48,16 +50,18 @@ class FormPage(BasePage):
     def choose_date_of_birth(self):
         with allure.step("Заполнить поле Date of birth произвольной датой"):
             self.click_element(Locator.BIRTH_DAY)    # choose calender
+            # Select month:
+            self.get_selected_option_in_select(Locator.MONTHS_CHANGE)
             # Select year:
             self.click_button(Locator.YEARS_CHANGE)
             year = self.get_text(Locator.YEARS)
-            self.click_element(Locator.YEARS)        # choose years
-            # Select month:
-            self.click_element(Locator.MONTHS_CHANGE)
-            month = self.get_text(Locator.MONTHS)
-            self.click_element(Locator.MONTHS)        # choose month
+            self.click_element(Locator.YEARS)  # choose years
             # Select day:
             day = self.click_random_element_day(Locator.DAY_DATE_PICKER)
+            # get text month
+            self.click_element(Locator.BIRTH_DAY)
+            month = self.get_text_select(Locator.MONTHS_CHANGE)
+            self.send_keys_in_field(Locator.BIRTH_DAY, Keys.ENTER)
         return day, f'{month},{year}'
 
     def fill_subjects(self):
